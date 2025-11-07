@@ -1,0 +1,35 @@
+{
+  "name": "home-service-website",
+  "version": "1.0.0",
+  "description": "A fully responsive React-based home service website",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://kycharan138-art:ghs_M39e3fPdNKLMujyR1ePdGfQ51R5OLp1MEhhW@github.com/kycharan138-art/cto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kycharan138-art/cto/issues"
+  },
+  "homepage": "https://github.com/kycharan138-art/cto#readme",
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.553.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "vite": "^7.2.2"
+  }
+}
