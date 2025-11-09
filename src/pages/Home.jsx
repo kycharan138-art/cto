@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Star, Users, Clock, CheckCircle, Award, Sparkles, Crown, Shield } from 'lucide-react'
+import { Star, Users, Clock, CheckCircle, Award, Sparkles, Crown, Shield, Phone, Calendar, TrendingUp, MapPin } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useReveal } from '../hooks/useReveal'
 import './Home.css'
@@ -139,24 +139,120 @@ export default function Home() {
   return (
     <div className="home">
       {/* Hero Section */}
-      <section ref={heroRef} className={`hero ${heroRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+      <section ref={heroRef} className={`hero ${heroRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`} aria-label="Luxury Home Services Hero">
+        <div className="hero-background">
+          <div className="hero-gradient-overlay"></div>
+          <div className="hero-grid-pattern"></div>
+          <div className="hero-gradient-orbs">
+            <div className="gradient-orb orb-1"></div>
+            <div className="gradient-orb orb-2"></div>
+            <div className="gradient-orb orb-3"></div>
+          </div>
+        </div>
+        
         <div className="container">
-          <div className="hero-content">
-            <div className="hero-badge">
-              <Sparkles size={16} />
-              <span>Luxury Home Services</span>
+          <div className="hero-layout">
+            {/* Left Column - Content */}
+            <div className="hero-content-column">
+              <div className="hero-content">
+                <div className={`hero-badge ${heroRevealed ? 'hero-entrance-up hero-delay-1' : ''}`}>
+                  <Sparkles size={16} />
+                  <span>Luxury Home Services</span>
+                </div>
+                <h1 className={`hero-title ${heroRevealed ? 'hero-entrance-up hero-delay-2' : ''}`}>
+                  Transform Your Home Into a Sanctuary of Excellence
+                </h1>
+                <p className={`hero-subtitle ${heroRevealed ? 'hero-entrance-up hero-delay-3' : ''}`}>
+                  Experience white-glove home services where every detail is meticulously crafted. 
+                  From routine maintenance to complete luxury transformations, we elevate your living experience beyond expectations.
+                </p>
+                
+                {/* Confidence Stats */}
+                <div className={`hero-stats ${heroRevealed ? 'hero-entrance-up hero-delay-4' : ''}`}>
+                  <div className="stat-item">
+                    <div className="stat-number">98%</div>
+                    <div className="stat-label">Client Satisfaction</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-number">24/7</div>
+                    <div className="stat-label">Premium Support</div>
+                  </div>
+                  <div className="stat-item">
+                    <div className="stat-number">10K+</div>
+                    <div className="stat-label">Homes Transformed</div>
+                  </div>
+                </div>
+                
+                <div className={`hero-buttons ${heroRevealed ? 'hero-entrance-up hero-delay-5' : ''}`}>
+                  <Link to="/booking" className="btn btn-primary btn-large hero-cta-primary gradient-border btn-glow">
+                    <Crown size={18} />
+                    Start Your Journey
+                  </Link>
+                  <Link to="/services" className="btn btn-outline btn-large hero-cta-secondary lux-card">
+                    <Calendar size={18} />
+                    Schedule Consultation
+                  </Link>
+                </div>
+              </div>
             </div>
-            <h1 className="hero-title">Elevate Your Living Experience</h1>
-            <p className="hero-subtitle">
-              Premium home services with white-glove treatment. From essential maintenance to complete home transformations.
-            </p>
-            <div className="hero-buttons">
-              <Link to="/booking" className="btn btn-primary btn-large hover-lift gradient-border">
-                Start Your Journey
-              </Link>
-              <Link to="/services" className="btn btn-outline btn-large hover-lift lux-card">
-                Explore Services
-              </Link>
+            
+            {/* Right Column - Visual Elements */}
+            <div className="hero-visual-column">
+              <div className="hero-visual-elements">
+                {/* Floating Cards */}
+                <div className={`floating-card floating-card-1 lux-card ${heroRevealed ? 'hero-entrance-right hero-delay-6' : ''} parallax-medium`} role="status" aria-label="5-Star Service Rating">
+                  <div className="floating-card-icon" aria-hidden="true">
+                    <Star size={20} />
+                  </div>
+                  <div className="floating-card-content">
+                    <div className="floating-card-title">5-Star Service</div>
+                    <div className="floating-card-value">4.9/5 Rating</div>
+                  </div>
+                </div>
+                
+                <div className={`floating-card floating-card-2 lux-card ${heroRevealed ? 'hero-entrance-left hero-delay-7' : ''} parallax-medium`} role="status" aria-label="Insurance and Guarantee">
+                  <div className="floating-card-icon" aria-hidden="true">
+                    <Shield size={20} />
+                  </div>
+                  <div className="floating-card-content">
+                    <div className="floating-card-title">Fully Insured</div>
+                    <div className="floating-card-value">100% Guaranteed</div>
+                  </div>
+                </div>
+                
+                <div className={`floating-card floating-card-3 lux-card ${heroRevealed ? 'hero-entrance-right hero-delay-8' : ''} parallax-medium`} role="status" aria-label="Service Punctuality">
+                  <div className="floating-card-icon" aria-hidden="true">
+                    <Clock size={20} />
+                  </div>
+                  <div className="floating-card-content">
+                    <div className="floating-card-title">On-Time Service</div>
+                    <div className="floating-card-value">Always Punctual</div>
+                  </div>
+                </div>
+                
+                {/* Schedule Callout */}
+                <div className={`schedule-callout lux-card ${heroRevealed ? 'hero-entrance-up hero-delay-8' : ''} parallax-slow`} role="complementary" aria-label="Priority Scheduling Callout">
+                  <div className="callout-header">
+                    <Phone size={16} aria-hidden="true" />
+                    <span>Priority Scheduling</span>
+                  </div>
+                  <div className="callout-content">
+                    <div className="callout-title">Book Today</div>
+                    <div className="callout-subtitle">Same-day availability</div>
+                  </div>
+                  <div className="callout-action">
+                    <Link to="/booking" className="callout-btn btn-glow">
+                      Reserve Now
+                    </Link>
+                  </div>
+                </div>
+                
+                {/* Location Badge */}
+                <div className={`location-badge lux-card ${heroRevealed ? 'hero-entrance-up hero-delay-6' : ''} parallax-fast`} role="status" aria-label="Service Location">
+                  <MapPin size={16} aria-hidden="true" />
+                  <span>Serving Beverly Hills & Beyond</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
