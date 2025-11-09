@@ -5,34 +5,83 @@
 }
 
 :root {
-  --primary-color: #3b82f6;
-  --secondary-color: #1e40af;
-  --accent-color: #f59e0b;
-  --success-color: #10b981;
-  --error-color: #ef4444;
-  --warning-color: #f59e0b;
-  --background-color: #f9fafb;
-  --surface-color: #ffffff;
-  --text-primary: #1f2937;
-  --text-secondary: #6b7280;
-  --border-color: #e5e7eb;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
+  /* Luxury Color Palette - Deep Charcoal, Champagne Gold, Muted Jade */
+  --primary-color: #1a1a2e;
+  --primary-light: #2d2d44;
+  --primary-dark: #0f0f1e;
+  --secondary-color: #d4a574;
+  --secondary-light: #e8c8a0;
+  --secondary-dark: #a67c52;
+  --accent-color: #6b9e7f;
+  --accent-light: #8bb89f;
+  --accent-dark: #5a7f67;
   
-  /* Luxury Design Tokens */
-  --luxury-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  /* Supporting Colors */
+  --success-color: #6b9e7f;
+  --error-color: #d97f6f;
+  --warning-color: #d4a574;
+  --info-color: #8dd3c7;
+  
+  /* Background & Surface */
+  --background-color: #f5f3f0;
+  --background-dark: #2d2d44;
+  --surface-color: #ffffff;
+  --surface-secondary: #f9f7f4;
+  
+  /* Text Colors with WCAG Compliance */
+  --text-primary: #1a1a2e;
+  --text-secondary: #6b6b7a;
+  --text-tertiary: #9a9aaa;
+  --text-light: #ffffff;
+  --text-inverse: #f5f3f0;
+  
+  /* Borders & Dividers */
+  --border-color: #e8e5df;
+  --border-light: #f0ede8;
+  --divider-color: #dcdac5;
+  
+  /* Shadows - Luxury Style */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --shadow-luxury: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --shadow-luxury-hover: 0 20px 48px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  
+  /* Border Radius - Luxury */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+  
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Luxury Gradient Tokens */
+  --gradient-luxury: linear-gradient(135deg, #d4a574 0%, #6b9e7f 100%);
+  --gradient-warm: linear-gradient(135deg, #d4a574 0%, #e8c8a0 100%);
+  --gradient-cool: linear-gradient(135deg, #6b9e7f 0%, #5a7f67 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(107, 158, 127, 0.1) 100%);
+  --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+  
+  /* Glassmorphism Tokens */
   --glass-bg: rgba(255, 255, 255, 0.85);
   --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-dark: rgba(212, 165, 116, 0.1);
+  --glass-dark-border: rgba(212, 165, 116, 0.2);
+  --glass-accent: rgba(107, 158, 127, 0.1);
+  --glass-accent-border: rgba(107, 158, 127, 0.2);
+  
+  /* Luxury Shadow Tokens */
   --luxury-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   --luxury-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
-  --hero-gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
-  --hero-gradient-secondary: linear-gradient(135deg, #ec4899, #f59e0b);
-  --hero-gradient-accent: linear-gradient(135deg, #10b981, #3b82f6);
-  --glass-dark: rgba(255, 255, 255, 0.1);
-  --glass-dark-border: rgba(255, 255, 255, 0.2);
-  --text-gradient: linear-gradient(135deg, #ffffff, #f1f5f9, #e2e8f0);
+  
+  /* Text Gradient for Luxury */
+  --text-gradient: linear-gradient(135deg, #d4a574 0%, #6b9e7f 100%);
+  --text-gradient-warm: linear-gradient(135deg, #d4a574 0%, #e8c8a0 100%);
 }
 
 html {
@@ -40,7 +89,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -48,6 +97,64 @@ body {
   background-color: var(--background-color);
   color: var(--text-primary);
   line-height: 1.6;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+
+/* Heading Styles - Playfair Display for Luxury Display Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+h3 {
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Paragraph and text adjustments */
+p {
+  line-height: 1.7;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+p strong {
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 code {
@@ -70,13 +177,20 @@ input, textarea, select {
 }
 
 a {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   text-decoration: none;
   transition: var(--transition);
+  font-weight: 500;
 }
 
 a:hover {
-  color: var(--secondary-color);
+  color: var(--secondary-dark);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }
 
 /* Layout Classes */
@@ -141,85 +255,21 @@ a:hover {
   }
 }
 
-/* Button Styles */
-.btn {
-  padding: 10px 24px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: var(--transition);
-  display: inline-block;
-  text-align: center;
-}
-
-.btn-primary {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: var(--secondary-color);
-  box-shadow: var(--shadow-md);
-}
-
-.btn-secondary {
-  background-color: var(--accent-color);
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: #d97706;
-  box-shadow: var(--shadow-md);
-}
-
-.btn-outline {
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  background-color: transparent;
-}
-
-.btn-outline:hover {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.btn-small {
-  padding: 8px 16px;
-  font-size: 12px;
-}
-
-.btn-large {
-  padding: 14px 32px;
-  font-size: 16px;
-}
-
-/* Card Styles */
-.card {
-  background-color: var(--surface-color);
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-4px);
-}
-
-/* Enhanced Button Styles for Luxury */
+/* Button Styles - Luxury Premium Design */
 .btn {
   padding: 12px 28px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
+  transition: var(--transition);
   display: inline-block;
   text-align: center;
   position: relative;
   overflow: hidden;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
 }
 
 .btn::before {
@@ -237,33 +287,151 @@ a:hover {
   left: 100%;
 }
 
-/* Badge Styles */
+/* Primary Button - Deep Charcoal with Light Accents */
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--text-light);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--primary-light);
+}
+
+.btn-primary:hover {
+  background: var(--primary-light);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button - Champagne Gold */
+.btn-secondary {
+  background: var(--secondary-color);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--secondary-light);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-light);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* Accent Button - Muted Jade */
+.btn-accent {
+  background: var(--accent-color);
+  color: var(--text-light);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--accent-light);
+}
+
+.btn-accent:hover {
+  background: var(--accent-light);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.btn-accent:active {
+  transform: translateY(0);
+}
+
+/* Outline Button */
+.btn-outline {
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: rgba(212, 165, 116, 0.1);
+  box-shadow: var(--shadow-md);
+}
+
+/* Size Variants */
+.btn-small {
+  padding: 8px 16px;
+  font-size: 12px;
+  border-radius: var(--radius-md);
+}
+
+.btn-large {
+  padding: 14px 32px;
+  font-size: 16px;
+  border-radius: var(--radius-xl);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Disabled State */
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Card Styles - Luxury Design */
+.card {
+  background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+  border-color: var(--secondary-color);
+}
+
+/* Badge Styles - Luxury Design */
 .badge {
   display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
   font-size: 12px;
   font-weight: 600;
+  letter-spacing: 0.3px;
   background-color: var(--background-color);
   color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
 }
 
 .badge-primary {
-  background-color: #dbeafe;
-  color: var(--primary-color);
+  background: rgba(212, 165, 116, 0.1);
+  color: var(--secondary-dark);
+  border-color: rgba(212, 165, 116, 0.3);
 }
 
 .badge-success {
-  background-color: #d1fae5;
-  color: var(--success-color);
+  background: rgba(107, 158, 127, 0.1);
+  color: var(--accent-dark);
+  border-color: rgba(107, 158, 127, 0.3);
 }
 
 .badge-warning {
-  background-color: #fef3c7;
-  color: var(--warning-color);
+  background: rgba(217, 127, 111, 0.1);
+  color: var(--error-color);
+  border-color: rgba(217, 127, 111, 0.3);
 }
 
-/* Form Styles */
+.badge-accent {
+  background: rgba(107, 158, 127, 0.1);
+  color: var(--accent-color);
+  border-color: rgba(107, 158, 127, 0.3);
+}
+
+/* Form Styles - Luxury Design */
 .form-group {
   margin-bottom: 24px;
 }
@@ -273,49 +441,71 @@ a:hover {
   margin-bottom: 8px;
   font-weight: 600;
   color: var(--text-primary);
+  font-size: 14px;
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  padding: 12px;
+  padding: 12px 14px;
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   font-size: 14px;
   transition: var(--transition);
   background-color: var(--surface-color);
+  font-family: 'Inter', sans-serif;
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
 }
 
 .form-group textarea {
   resize: vertical;
   min-height: 120px;
+  font-family: 'Inter', sans-serif;
 }
 
-/* Section Styles */
+/* Form validation states */
+.form-group input:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--error-color);
+}
+
+.form-group input:valid:not(:placeholder-shown),
+.form-group textarea:valid:not(:placeholder-shown) {
+  border-color: var(--success-color);
+}
+
+/* Section Styles - Luxury Design */
 .section {
-  padding: 60px 0;
+  padding: 80px 0;
 }
 
 .section-title {
-  font-size: 32px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
   margin-bottom: 16px;
   color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
 .section-subtitle {
   font-size: 16px;
   color: var(--text-secondary);
   margin-bottom: 40px;
+  line-height: 1.7;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 60px;
 }
 
 /* Responsive Text */
@@ -329,10 +519,10 @@ a:hover {
   }
 }
 
-/* Loading Spinner */
+/* Loading Spinner - Luxury Design */
 .spinner {
   border: 4px solid var(--border-color);
-  border-top: 4px solid var(--primary-color);
+  border-top: 4px solid var(--secondary-color);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -344,21 +534,210 @@ a:hover {
   100% { transform: rotate(360deg); }
 }
 
-/* Success and Error Messages */
+/* Success and Error Messages - Luxury Design */
 .alert {
   padding: 16px;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   margin-bottom: 16px;
+  border: 1px solid;
+  font-weight: 500;
 }
 
 .alert-success {
-  background-color: #d1fae5;
-  color: var(--success-color);
-  border: 1px solid var(--success-color);
+  background: rgba(107, 158, 127, 0.1);
+  color: var(--accent-dark);
+  border-color: rgba(107, 158, 127, 0.3);
 }
 
 .alert-error {
-  background-color: #fee2e2;
+  background: rgba(217, 127, 111, 0.1);
   color: var(--error-color);
-  border: 1px solid var(--error-color);
+  border-color: rgba(217, 127, 111, 0.3);
+}
+
+.alert-warning {
+  background: rgba(212, 165, 116, 0.1);
+  color: var(--warning-color);
+  border-color: rgba(212, 165, 116, 0.3);
+}
+
+.alert-info {
+  background: rgba(141, 211, 199, 0.1);
+  color: var(--info-color);
+  border-color: rgba(141, 211, 199, 0.3);
+}
+
+/* Utility Classes - Luxury Design System */
+
+/* Text Utilities */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-light {
+  color: var(--text-light);
+}
+
+.text-accent {
+  color: var(--accent-color);
+}
+
+.text-warning {
+  color: var(--warning-color);
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Spacing Utilities */
+.spacing-sm {
+  gap: 1rem;
+}
+
+.spacing-md {
+  gap: 1.5rem;
+}
+
+.spacing-lg {
+  gap: 2rem;
+}
+
+/* Gradient Utilities */
+.gradient-luxury {
+  background: var(--gradient-luxury);
+}
+
+.gradient-warm {
+  background: var(--gradient-warm);
+}
+
+.gradient-cool {
+  background: var(--gradient-cool);
+}
+
+/* Shadow Utilities */
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-xl {
+  box-shadow: var(--shadow-xl);
+}
+
+.shadow-luxury {
+  box-shadow: var(--shadow-luxury);
+}
+
+/* Border Radius Utilities */
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+.rounded-xl {
+  border-radius: var(--radius-xl);
+}
+
+.rounded-full {
+  border-radius: var(--radius-full);
+}
+
+/* Transition Utilities */
+.transition-fast {
+  transition: var(--transition-fast);
+}
+
+.transition-normal {
+  transition: var(--transition);
+}
+
+.transition-slow {
+  transition: var(--transition-slow);
+}
+
+/* Display Utilities */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Opacity Utilities */
+.opacity-half {
+  opacity: 0.5;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+/* Text Alignment */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Hover Effects */
+.hover-lift-sm {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hover-lift-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-lift-lg {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift-lg:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
 }

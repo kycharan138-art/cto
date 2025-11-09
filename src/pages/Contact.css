@@ -4,11 +4,12 @@
 }
 
 .contact-header {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  color: white;
-  padding: 60px 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: var(--text-light);
+  padding: 80px 0;
   text-align: center;
   margin-bottom: 40px;
+  border-bottom: 1px solid rgba(212, 165, 116, 0.1);
 }
 
 .contact-header h1 {
@@ -66,10 +67,17 @@
 }
 
 .contact-icon {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   margin-bottom: 16px;
   display: flex;
   justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(212, 165, 116, 0.1);
+  border-radius: var(--radius-full);
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contact-info-card h3 {
@@ -111,14 +119,19 @@
 }
 
 .section-title {
-  font-size: 28px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 32px;
   font-weight: 700;
   margin-bottom: 32px;
   color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
 .contact-form {
   background-color: var(--surface-color);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 24px;
 }
 
 .form-row {
@@ -160,8 +173,8 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
 }
 
 .form-group textarea {
@@ -271,7 +284,7 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .faq-icon.expanded {

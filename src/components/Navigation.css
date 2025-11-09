@@ -4,24 +4,26 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
+  padding: 12px 0;
   height: 70px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 24px;
   font-weight: 700;
   color: var(--primary-color);
   transition: var(--transition);
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
 .logo:hover {
@@ -34,6 +36,7 @@
 
 .logo-text {
   display: none;
+  letter-spacing: -0.5px;
 }
 
 .menu-toggle {
@@ -42,6 +45,12 @@
   padding: 0;
   cursor: pointer;
   color: var(--text-primary);
+  border: none;
+  transition: var(--transition);
+}
+
+.menu-toggle:hover {
+  color: var(--secondary-color);
 }
 
 .nav-menu {
@@ -56,6 +65,8 @@
   color: var(--text-primary);
   transition: var(--transition);
   position: relative;
+  font-size: 14px;
+  letter-spacing: 0.2px;
 }
 
 .nav-menu a::after {
@@ -65,12 +76,12 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   transition: var(--transition);
 }
 
 .nav-menu a:hover {
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .nav-menu a:hover::after {
@@ -111,7 +122,8 @@
   .nav-menu a {
     display: block;
     padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--divider-color);
+    position: relative;
   }
 
   .nav-menu a::after {
@@ -119,6 +131,7 @@
   }
 
   .nav-menu a:hover {
+    color: var(--secondary-color);
     padding-left: 8px;
   }
 }
