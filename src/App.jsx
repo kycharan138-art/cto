@@ -7,6 +7,7 @@ import Booking from './pages/Booking'
 import Reviews from './pages/Reviews'
 import Contact from './pages/Contact'
 import './App.css'
+import './animations.css'
 
 function App() {
   return (
