@@ -27,6 +27,12 @@
   --glass-border: rgba(255, 255, 255, 0.2);
   --luxury-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   --luxury-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.1);
+  --hero-gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  --hero-gradient-secondary: linear-gradient(135deg, #ec4899, #f59e0b);
+  --hero-gradient-accent: linear-gradient(135deg, #10b981, #3b82f6);
+  --glass-dark: rgba(255, 255, 255, 0.1);
+  --glass-dark-border: rgba(255, 255, 255, 0.2);
+  --text-gradient: linear-gradient(135deg, #ffffff, #f1f5f9, #e2e8f0);
 }
 
 html {

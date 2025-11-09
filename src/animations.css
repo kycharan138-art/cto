@@ -219,3 +219,120 @@
 .shimmer-border:hover::before {
   left: 100%;
 }
+
+/* Hero-specific animations */
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes shimmer-text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Button glow effect */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-glow:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Parallax effect for hero elements */
+.parallax-slow {
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-medium {
+  transition: transform 0.05s ease-out;
+}
+
+.parallax-fast {
+  transition: transform 0.02s ease-out;
+}
+
+/* Hero entrance animations */
+.hero-entrance-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: heroSlideInLeft 1s ease-out forwards;
+}
+
+.hero-entrance-right {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: heroSlideInRight 1s ease-out forwards;
+}
+
+.hero-entrance-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroSlideInUp 1s ease-out forwards;
+}
+
+@keyframes heroSlideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroSlideInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes heroSlideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Staggered entrance delays */
+.hero-delay-1 { animation-delay: 0.1s; }
+.hero-delay-2 { animation-delay: 0.2s; }
+.hero-delay-3 { animation-delay: 0.3s; }
+.hero-delay-4 { animation-delay: 0.4s; }
+.hero-delay-5 { animation-delay: 0.5s; }
+.hero-delay-6 { animation-delay: 0.6s; }
+.hero-delay-7 { animation-delay: 0.7s; }
+.hero-delay-8 { animation-delay: 0.8s; }
