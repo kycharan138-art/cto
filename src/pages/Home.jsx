@@ -1,17 +1,26 @@
 import { Link } from 'react-router-dom'
-import { Star, Users, Clock, CheckCircle } from 'lucide-react'
+import { Star, Users, Clock, CheckCircle, Award, Sparkles, Crown, Shield } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useReveal } from '../hooks/useReveal'
 import './Home.css'
 
 function ServiceCardSkeleton() {
   return (
-    <div className="service-card skeleton card">
+    <div className="lux-service-card skeleton lux-card">
+      <div className="skeleton-tier"></div>
       <div className="skeleton-header">
         <div className="skeleton-title"></div>
-        <div className="skeleton-price"></div>
       </div>
       <div className="skeleton-description"></div>
+      <div className="skeleton-pricing">
+        <div className="skeleton-current-price"></div>
+        <div className="skeleton-original-price"></div>
+      </div>
+      <div className="skeleton-features">
+        <div className="skeleton-feature"></div>
+        <div className="skeleton-feature"></div>
+        <div className="skeleton-feature"></div>
+      </div>
       <div className="skeleton-rating"></div>
       <div className="skeleton-button"></div>
     </div>
@@ -43,57 +52,87 @@ export default function Home() {
     }, 1500)
   }
 
-  const features = [
+  const luxuryFeatures = [
     {
-      icon: <Star size={32} />,
-      title: 'Top-Rated Services',
-      description: 'All our service providers are carefully vetted and highly rated by customers.'
+      icon: <Crown size={32} />,
+      title: 'Premium Concierge',
+      description: 'Dedicated service coordinators who manage your entire home service portfolio with white-glove care.',
+      badge: 'Exclusive'
     },
     {
-      icon: <Users size={32} />,
-      title: 'Expert Professionals',
-      description: 'Work with trained and certified professionals in your area.'
+      icon: <Shield size={32} />,
+      title: 'Insured & Certified',
+      description: 'All professionals are thoroughly vetted, background-checked, and fully insured for your peace of mind.',
+      badge: 'Guaranteed'
     },
     {
-      icon: <Clock size={32} />,
-      title: 'Easy Scheduling',
-      description: 'Book services at your convenience with flexible scheduling options.'
+      icon: <Award size={32} />,
+      title: 'Award-Winning Service',
+      description: 'Recognized as the industry leader in luxury home services with 98% client satisfaction.',
+      badge: 'Top Rated'
     },
     {
-      icon: <CheckCircle size={32} />,
-      title: 'Guaranteed Quality',
-      description: 'We guarantee satisfaction or your money back.'
+      icon: <Sparkles size={32} />,
+      title: 'Eco-Luxury Options',
+      description: 'Sustainable premium services using eco-friendly products without compromising on excellence.',
+      badge: 'Green'
     }
   ]
 
-  const popularServices = [
+  const tieredServices = [
     {
-      name: 'House Cleaning',
-      description: 'Professional house cleaning service',
+      name: 'Essential Cleaning',
+      description: 'Professional cleaning for everyday maintenance',
       price: '$99',
+      originalPrice: '$149',
       rating: 4.8,
-      reviews: 256
+      reviews: 256,
+      tier: 'Essential',
+      features: ['2-hour service', 'Basic supplies included', 'Weekly scheduling'],
+      popular: true
     },
     {
-      name: 'Plumbing Repair',
-      description: 'Expert plumbing repair and maintenance',
-      price: '$120',
+      name: 'Premium Plumbing',
+      description: 'Expert plumbing with priority response',
+      price: '$189',
+      originalPrice: '$239',
       rating: 4.9,
-      reviews: 189
+      reviews: 189,
+      tier: 'Premium',
+      features: ['24/7 emergency support', 'Senior technicians', 'Warranty included'],
+      popular: false
     },
     {
-      name: 'Electrical Work',
-      description: 'Licensed electrician services',
-      price: '$150',
-      rating: 4.7,
-      reviews: 142
+      name: 'Elite Electrical',
+      description: 'Master electrician services with luxury upgrades',
+      price: '$275',
+      originalPrice: '$350',
+      rating: 4.9,
+      reviews: 142,
+      tier: 'Elite',
+      features: ['Smart home integration', 'Energy audit included', 'Lifetime warranty'],
+      popular: false
     },
     {
-      name: 'Lawn Care',
-      description: 'Professional landscaping and lawn maintenance',
-      price: '$85',
-      rating: 4.6,
-      reviews: 203
+      name: 'Signature Landscaping',
+      description: 'Complete outdoor transformation with design',
+      price: '$425',
+      originalPrice: '$550',
+      rating: 5.0,
+      reviews: 203,
+      tier: 'Signature',
+      features: ['Custom design plans', 'Seasonal rotations', 'Premium materials'],
+      popular: true
+    }
+  ]
+
+  const testimonials = [
+    {
+      name: 'Alexandra Chen',
+      location: 'Beverly Hills',
+      text: 'The concierge service transformed how I manage my properties. Absolutely worth every penny.',
+      rating: 5,
+      service: 'Premium Concierge'
     }
   ]
 
@@ -103,38 +142,45 @@ export default function Home() {
       <section ref={heroRef} className={`hero ${heroRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
         <div className="container">
           <div className="hero-content">
-            <h1 className="hero-title">Your Trusted Home Service Partner</h1>
+            <div className="hero-badge">
+              <Sparkles size={16} />
+              <span>Luxury Home Services</span>
+            </div>
+            <h1 className="hero-title">Elevate Your Living Experience</h1>
             <p className="hero-subtitle">
-              Book professional home services in minutes. From cleaning to repairs, we've got you covered.
+              Premium home services with white-glove treatment. From essential maintenance to complete home transformations.
             </p>
             <div className="hero-buttons">
-              <Link to="/booking" className="btn btn-primary btn-large hover-lift">
-                Book a Service
+              <Link to="/booking" className="btn btn-primary btn-large hover-lift gradient-border">
+                Start Your Journey
               </Link>
-              <Link to="/services" className="btn btn-outline btn-large hover-lift">
-                Browse Services
+              <Link to="/services" className="btn btn-outline btn-large hover-lift lux-card">
+                Explore Services
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Luxury Features Section */}
       <section ref={featuresRef} className={`features section ${featuresRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
         <div className="container">
-          <h2 className="section-title">Why Choose HomePro?</h2>
-          <p className="section-subtitle">
-            We provide reliable, professional home services you can trust
-          </p>
+          <div className="section-header">
+            <h2 className="section-title">Why Choose Our Luxury Services?</h2>
+            <p className="section-subtitle">
+              Experience the pinnacle of home service excellence with our premium offerings
+            </p>
+          </div>
           <div className="features-grid grid-4">
-            {features.map((feature, index) => (
+            {luxuryFeatures.map((feature, index) => (
               <div 
                 key={index} 
-                className={`feature-card card hover-lift ${
+                className={`lux-feature-card lux-card hover-lift ${
                   featuresRevealed ? `fade-up delay-${(index + 1) * 100}` : ''
                 }`}
               >
-                <div className="feature-icon">{feature.icon}</div>
+                <div className="lux-feature-badge">{feature.badge}</div>
+                <div className="lux-feature-icon">{feature.icon}</div>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
               </div>
@@ -143,13 +189,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Popular Services Section */}
-      <section ref={servicesRef} className={`popular-services section ${servicesRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+      {/* Testimonial Snippet */}
+      <section className="testimonial-snippet">
         <div className="container">
-          <h2 className="section-title">Popular Services</h2>
-          <p className="section-subtitle">
-            Check out our most requested services
-          </p>
+          <div className="testimonial-card lux-card">
+            <div className="testimonial-content">
+              <div className="testimonial-rating">
+                {'⭐'.repeat(testimonials[0].rating)}
+              </div>
+              <blockquote>"{testimonials[0].text}"</blockquote>
+              <div className="testimonial-author">
+                <strong>{testimonials[0].name}</strong>
+                <span>{testimonials[0].location} • {testimonials[0].service}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tiered Services Section */}
+      <section ref={servicesRef} className={`tiered-services section ${servicesRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">Service Tiers</h2>
+            <p className="section-subtitle">
+              Choose your level of luxury - from essential maintenance to signature transformations
+            </p>
+          </div>
           <div className="services-grid grid-4">
             {isLoading ? (
               // Show skeleton cards while loading
@@ -157,28 +223,45 @@ export default function Home() {
                 <ServiceCardSkeleton key={`skeleton-${index}`} />
               ))
             ) : (
-              popularServices.map((service, index) => (
+              tieredServices.map((service, index) => (
                 <div 
                   key={index} 
-                  className={`service-card card hover-lift shimmer-border ${
+                  className={`lux-service-card lux-card hover-lift gradient-border ${
                     servicesRevealed ? `fade-up delay-${(index + 1) * 100}` : ''
-                  }`}
+                  } ${service.popular ? 'popular' : ''}`}
                 >
+                  {service.popular && (
+                    <div className="service-badge">
+                      <Star size={14} />
+                      <span>Most Popular</span>
+                    </div>
+                  )}
+                  <div className="service-tier">{service.tier}</div>
                   <div className="service-header">
                     <h3>{service.name}</h3>
-                    <span className="service-price">{service.price}</span>
                   </div>
                   <p className="service-description">{service.description}</p>
+                  <div className="service-pricing">
+                    <span className="current-price">{service.price}</span>
+                    <span className="original-price">{service.originalPrice}</span>
+                  </div>
+                  <ul className="service-features">
+                    {service.features.map((feature, idx) => (
+                      <li key={idx}>
+                        <CheckCircle size={14} />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
                   <div className="service-rating">
                     <span className="stars">
                       {'⭐'.repeat(Math.floor(service.rating))}
                     </span>
                     <span className="rating-value">{service.rating}</span>
-                    <span className="reviews-count">({service.reviews} reviews)</span>
+                    <span className="reviews-count">({service.reviews})</span>
                   </div>
                   <button 
                     className="btn btn-primary" 
-                    style={{ width: '100%', marginTop: '16px' }}
                     onClick={handleBookService}
                     disabled={isButtonLoading}
                   >
@@ -188,7 +271,7 @@ export default function Home() {
                         Loading...
                       </span>
                     ) : (
-                      'View Details'
+                      'Book Now'
                     )}
                   </button>
                 </div>
@@ -196,22 +279,44 @@ export default function Home() {
             )}
           </div>
           <div className="section-footer">
-            <Link to="/services" className="btn btn-outline btn-large hover-lift">
+            <Link to="/services" className="btn btn-outline btn-large hover-lift lux-card">
               View All Services
             </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section ref={ctaRef} className={`cta-section section ${ctaRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+      {/* Concierge CTA Section */}
+      <section ref={ctaRef} className={`concierge-cta section ${ctaRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
         <div className="container">
-          <div className="cta-content">
-            <h2>Ready to Get Started?</h2>
-            <p>Book your first service today and experience the HomePro difference</p>
-            <Link to="/booking" className="btn btn-secondary btn-large hover-lift">
-              Book Now
-            </Link>
+          <div className="cta-content lux-card">
+            <div className="cta-icon">
+              <Crown size={48} />
+            </div>
+            <h2>Ready for Luxury Living?</h2>
+            <p>Join our exclusive concierge program and experience white-glove home service management</p>
+            <div className="cta-features">
+              <div className="cta-feature">
+                <CheckCircle size={16} />
+                <span>Personal service coordinator</span>
+              </div>
+              <div className="cta-feature">
+                <CheckCircle size={16} />
+                <span>Priority scheduling</span>
+              </div>
+              <div className="cta-feature">
+                <CheckCircle size={16} />
+                <span>Exclusive rates</span>
+              </div>
+            </div>
+            <div className="cta-buttons">
+              <Link to="/booking" className="btn btn-primary btn-large hover-lift gradient-border">
+                Start Concierge Service
+              </Link>
+              <Link to="/contact" className="btn btn-outline btn-large hover-lift lux-card">
+                Schedule Consultation
+              </Link>
+            </div>
           </div>
         </div>
       </section>
