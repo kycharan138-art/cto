@@ -14,14 +14,16 @@ function App() {
     <Router>
       <div className="app">
         <Navigation />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/booking" element={<Booking />} />
-            <Route path="/reviews" element={<Reviews />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+        <main className="main-content bg-gradient-subtle">
+          <div className="page-wrapper">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/booking" element={<Booking />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </div>
         </main>
         <Footer />
       </div>
