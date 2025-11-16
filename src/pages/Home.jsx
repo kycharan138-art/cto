@@ -34,6 +34,7 @@ export default function Home() {
   // Reveal hooks for sections
   const [heroRef, heroRevealed] = useReveal({ threshold: 0.1 })
   const [featuresRef, featuresRevealed] = useReveal({ threshold: 0.1 })
+  const [testimonialRef, testimonialRevealed] = useReveal({ threshold: 0.1 })
   const [servicesRef, servicesRevealed] = useReveal({ threshold: 0.1 })
   const [ctaRef, ctaRevealed] = useReveal({ threshold: 0.1 })
 
@@ -259,10 +260,10 @@ export default function Home() {
       </section>
 
       {/* Luxury Features Section */}
-      <section ref={featuresRef} className={`features section ${featuresRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+      <section ref={featuresRef} className={`features section-luxury ${featuresRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`} aria-label="Luxury Features">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">Why Choose Our Luxury Services?</h2>
+            <h2 className="section-title gradient-text">Why Choose Our Luxury Services?</h2>
             <p className="section-subtitle">
               Experience the pinnacle of home service excellence with our premium offerings
             </p>
@@ -274,9 +275,11 @@ export default function Home() {
                 className={`lux-feature-card lux-card hover-lift ${
                   featuresRevealed ? `fade-up delay-${(index + 1) * 100}` : ''
                 }`}
+                role="article"
+                aria-label={`${feature.title} - ${feature.badge}`}
               >
                 <div className="lux-feature-badge">{feature.badge}</div>
-                <div className="lux-feature-icon">{feature.icon}</div>
+                <div className="lux-feature-icon" aria-hidden="true">{feature.icon}</div>
                 <h3>{feature.title}</h3>
                 <p>{feature.description}</p>
               </div>
@@ -286,17 +289,40 @@ export default function Home() {
       </section>
 
       {/* Testimonial Snippet */}
-      <section className="testimonial-snippet">
+      <section ref={testimonialRef} className={`testimonial-snippet section-luxury reveal-fade-up ${testimonialRevealed ? 'revealed' : ''}`} aria-label="Client Testimonial">
         <div className="container">
-          <div className="testimonial-card lux-card">
-            <div className="testimonial-content">
-              <div className="testimonial-rating">
-                {'⭐'.repeat(testimonials[0].rating)}
+          <div className="testimonial-grid">
+            <div className={`testimonial-intro ${testimonialRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+              <div className="testimonial-badge lux-card" role="presentation">
+                <Star size={18} aria-hidden="true" />
+                <span>Voices of Distinction</span>
               </div>
-              <blockquote>"{testimonials[0].text}"</blockquote>
-              <div className="testimonial-author">
-                <strong>{testimonials[0].name}</strong>
-                <span>{testimonials[0].location} • {testimonials[0].service}</span>
+              <h2 className="section-title gradient-text">Every Experience Curated With Care</h2>
+              <p className="section-subtitle">
+                Hear from our distinguished clientele about the elevated service and meticulous attention we deliver.
+              </p>
+            </div>
+            <div className={`testimonial-card lux-card ${testimonialRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`} role="article" aria-label={`Testimonial from ${testimonials[0].name}`}>
+              <div className="testimonial-content">
+                <div className="testimonial-rating" aria-hidden="true">
+                  {'⭐'.repeat(testimonials[0].rating)}
+                </div>
+                <blockquote>"{testimonials[0].text}"</blockquote>
+                <div className="testimonial-author">
+                  <strong>{testimonials[0].name}</strong>
+                  <span>{testimonials[0].location} • {testimonials[0].service}</span>
+                </div>
+              </div>
+              <div className="testimonial-decoration">
+                <div className="testimonial-orb orb-a"></div>
+                <div className="testimonial-orb orb-b"></div>
+                <div className="testimonial-float lux-card">
+                  <Users size={18} aria-hidden="true" />
+                  <div>
+                    <span>Client Retention</span>
+                    <strong>97%</strong>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -304,10 +330,10 @@ export default function Home() {
       </section>
 
       {/* Tiered Services Section */}
-      <section ref={servicesRef} className={`tiered-services section ${servicesRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+      <section ref={servicesRef} className={`tiered-services section-luxury ${servicesRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`} aria-label="Service Tiers">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">Service Tiers</h2>
+            <h2 className="section-title gradient-text">Service Tiers</h2>
             <p className="section-subtitle">
               Choose your level of luxury - from essential maintenance to signature transformations
             </p>
@@ -325,14 +351,16 @@ export default function Home() {
                   className={`lux-service-card lux-card hover-lift gradient-border ${
                     servicesRevealed ? `fade-up delay-${(index + 1) * 100}` : ''
                   } ${service.popular ? 'popular' : ''}`}
+                  role="article"
+                  aria-label={`${service.name} - ${service.tier} tier, ${service.price}`}
                 >
                   {service.popular && (
-                    <div className="service-badge">
-                      <Star size={14} />
+                    <div className="service-badge" aria-label="Most Popular Service">
+                      <Star size={14} aria-hidden="true" />
                       <span>Most Popular</span>
                     </div>
                   )}
-                  <div className="service-tier">{service.tier}</div>
+                  <div className="service-tier" aria-label={`Service tier: ${service.tier}`}>{service.tier}</div>
                   <div className="service-header">
                     <h3>{service.name}</h3>
                   </div>
@@ -341,16 +369,16 @@ export default function Home() {
                     <span className="current-price">{service.price}</span>
                     <span className="original-price">{service.originalPrice}</span>
                   </div>
-                  <ul className="service-features">
+                  <ul className="service-features" role="list">
                     {service.features.map((feature, idx) => (
-                      <li key={idx}>
-                        <CheckCircle size={14} />
+                      <li key={idx} role="listitem">
+                        <CheckCircle size={14} aria-hidden="true" />
                         {feature}
                       </li>
                     ))}
                   </ul>
-                  <div className="service-rating">
-                    <span className="stars">
+                  <div className="service-rating" role="group" aria-label={`Rating: ${service.rating} out of 5 stars, ${service.reviews} reviews`}>
+                    <span className="stars" aria-hidden="true">
                       {'⭐'.repeat(Math.floor(service.rating))}
                     </span>
                     <span className="rating-value">{service.rating}</span>
@@ -360,10 +388,11 @@ export default function Home() {
                     className="btn btn-primary" 
                     onClick={handleBookService}
                     disabled={isButtonLoading}
+                    aria-label={`Book ${service.name} service`}
                   >
                     {isButtonLoading ? (
                       <span className="btn-loading">
-                        <span className="btn-spinner"></span>
+                        <span className="btn-spinner" role="status" aria-label="Loading"></span>
                         Loading...
                       </span>
                     ) : (
@@ -375,7 +404,7 @@ export default function Home() {
             )}
           </div>
           <div className="section-footer">
-            <Link to="/services" className="btn btn-outline btn-large hover-lift lux-card">
+            <Link to="/services" className="btn btn-outline btn-large hover-lift lux-card" aria-label="View all available services">
               View All Services
             </Link>
           </div>
@@ -383,35 +412,40 @@ export default function Home() {
       </section>
 
       {/* Concierge CTA Section */}
-      <section ref={ctaRef} className={`concierge-cta section ${ctaRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`}>
+      <section ref={ctaRef} className={`concierge-cta section-luxury ${ctaRevealed ? 'reveal-fade-up revealed' : 'reveal-fade-up'}`} aria-label="Concierge Call to Action">
         <div className="container">
           <div className="cta-content lux-card">
-            <div className="cta-icon">
+            <div className="cta-icon" aria-hidden="true">
               <Crown size={48} />
             </div>
-            <h2>Ready for Luxury Living?</h2>
-            <p>Join our exclusive concierge program and experience white-glove home service management</p>
-            <div className="cta-features">
-              <div className="cta-feature">
-                <CheckCircle size={16} />
+            <h2 className="gradient-text">Ready for Luxury Living?</h2>
+            <p>Join our exclusive concierge program and experience white-glove home service management.</p>
+            <div className="cta-features" role="list">
+              <div className="cta-feature" role="listitem">
+                <CheckCircle size={16} aria-hidden="true" />
                 <span>Personal service coordinator</span>
               </div>
-              <div className="cta-feature">
-                <CheckCircle size={16} />
+              <div className="cta-feature" role="listitem">
+                <CheckCircle size={16} aria-hidden="true" />
                 <span>Priority scheduling</span>
               </div>
-              <div className="cta-feature">
-                <CheckCircle size={16} />
+              <div className="cta-feature" role="listitem">
+                <CheckCircle size={16} aria-hidden="true" />
                 <span>Exclusive rates</span>
               </div>
             </div>
             <div className="cta-buttons">
-              <Link to="/booking" className="btn btn-primary btn-large hover-lift gradient-border">
+              <Link to="/booking" className="btn btn-primary btn-large hover-lift gradient-border btn-glow" aria-label="Start concierge service booking">
                 Start Concierge Service
               </Link>
-              <Link to="/contact" className="btn btn-outline btn-large hover-lift lux-card">
+              <Link to="/contact" className="btn btn-outline btn-large hover-lift lux-card" aria-label="Schedule a concierge consultation">
                 Schedule Consultation
               </Link>
+            </div>
+            <div className="cta-decoration">
+              <div className="cta-orb orb-one"></div>
+              <div className="cta-orb orb-two"></div>
+              <div className="cta-glow"></div>
             </div>
           </div>
         </div>
