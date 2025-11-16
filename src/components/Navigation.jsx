@@ -112,6 +112,7 @@ export default function Navigation() {
                 end={item.end}
                 className={({ isActive }) => `nav-link ${isActive ? 'nav-link--active' : ''}`}
                 onClick={closeMenu}
+                aria-current={({ isActive }) => isActive ? 'page' : undefined}
               >
                 <span>{item.label}</span>
               </NavLink>

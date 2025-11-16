@@ -47,22 +47,26 @@ export default function Footer() {
 
           <div className="footer-section">
             <h3>Quick Links</h3>
-            <ul className="footer-links">
-              <li><Link to="/services">Services</Link></li>
-              <li><Link to="/booking">Book Now</Link></li>
-              <li><Link to="/reviews">Reviews</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-            </ul>
+            <nav aria-label="Footer navigation">
+              <ul className="footer-links">
+                <li><Link to="/services" aria-label="View our premium services">Services</Link></li>
+                <li><Link to="/booking" aria-label="Book your appointment">Book Now</Link></li>
+                <li><Link to="/reviews" aria-label="Read customer reviews">Reviews</Link></li>
+                <li><Link to="/contact" aria-label="Contact our team">Contact</Link></li>
+              </ul>
+            </nav>
           </div>
 
           <div className="footer-section">
             <h3>Signature Services</h3>
-            <ul className="footer-links">
-              <li><a href="#cleaning">Luxury Cleaning</a></li>
-              <li><a href="#plumbing">Precision Plumbing</a></li>
-              <li><a href="#electrical">Expert Electrical</a></li>
-              <li><a href="#landscaping">Estate Landscaping</a></li>
-            </ul>
+            <nav aria-label="Service categories">
+              <ul className="footer-links">
+                <li><a href="#cleaning" aria-label="Learn about luxury cleaning services">Luxury Cleaning</a></li>
+                <li><a href="#plumbing" aria-label="Explore precision plumbing services">Precision Plumbing</a></li>
+                <li><a href="#electrical" aria-label="Discover expert electrical services">Expert Electrical</a></li>
+                <li><a href="#landscaping" aria-label="View estate landscaping services">Estate Landscaping</a></li>
+              </ul>
+            </nav>
           </div>
 
           <div className="footer-section footer-section--contact">
@@ -72,13 +76,17 @@ export default function Footer() {
                 <span className="contact-icon" aria-hidden="true">
                   <Phone size={18} />
                 </span>
-                <span className="contact-text">+1 (800) 123-4567</span>
+                <span className="contact-text">
+                  <a href="tel:+18001234567" aria-label="Call us at +1 (800) 123-4567">+1 (800) 123-4567</a>
+                </span>
               </li>
               <li>
                 <span className="contact-icon" aria-hidden="true">
                   <Mail size={18} />
                 </span>
-                <span className="contact-text">info@homepro.com</span>
+                <span className="contact-text">
+                  <a href="mailto:info@homepro.com" aria-label="Send email to info@homepro.com">info@homepro.com</a>
+                </span>
               </li>
               <li>
                 <span className="contact-icon" aria-hidden="true">
@@ -100,13 +108,21 @@ export default function Footer() {
 
           <div className="footer-social">
             <span className="footer-social-label">Follow our journey</span>
-            <div className="social-links">
-              {SOCIAL_LINKS.map(({ icon: Icon, label, href }) => (
-                <a key={label} href={href} aria-label={label}>
-                  <Icon size={20} aria-hidden="true" />
-                </a>
-              ))}
-            </div>
+            <nav aria-label="Social media links">
+              <div className="social-links">
+                {SOCIAL_LINKS.map(({ icon: Icon, label, href }) => (
+                  <a 
+                    key={label} 
+                    href={href} 
+                    aria-label={`Follow us on ${label}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon size={20} aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
+            </nav>
           </div>
         </div>
       </div>
