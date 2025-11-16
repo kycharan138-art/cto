@@ -1,11 +1,17 @@
 import { useState } from 'react'
 import { Search, Filter } from 'lucide-react'
+import { FadeSlideIn, StaggerContainer } from '../components/Motion'
+import { useLuxuryHover, useFloatingCard } from '../hooks/useMotion'
 import './Services.css'
 
 export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedPriceRange, setSelectedPriceRange] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  
+  // Motion hooks for service cards
+  const serviceCardRefs = {}
+  const hoveredCards = {}
 
   const categories = ['all', 'Cleaning', 'Plumbing', 'Electrical', 'Landscaping', 'Handyman', 'HVAC']
 
@@ -223,8 +229,12 @@ export default function Services() {
     <div className="services-page">
       <section className="services-header">
         <div className="container">
-          <h1>Our Services</h1>
-          <p>Browse and filter our comprehensive list of professional home services</p>
+          <FadeSlideIn direction="down">
+            <h1>Our Services</h1>
+          </FadeSlideIn>
+          <FadeSlideIn direction="up" delay={0.2}>
+            <p>Browse and filter our comprehensive list of professional home services</p>
+          </FadeSlideIn>
         </div>
       </section>
 
@@ -296,38 +306,60 @@ export default function Services() {
             Showing {filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''}
           </div>
 
-          <div className="services-list grid-3">
-            {filteredServices.length > 0 ? (
-              filteredServices.map(service => (
-                <div key={service.id} className="service-card card">
-                  <div className="service-image">{service.image}</div>
-                  <h3>{service.name}</h3>
-                  <p className="service-description">{service.description}</p>
+          <StaggerContainer staggerDelay={0.1}>
+            <div className="services-list grid-3">
+              {filteredServices.length > 0 ? (
+                filteredServices.map((service, index) => {
+                  // Create motion hooks for each card
+                  const [cardRef, isHovered] = useLuxuryHover({ 
+                    scale: 1.03, 
+                    lift: 6,
+                    glowColor: 'rgba(59, 130, 246, 0.2)'
+                  })
+                  
+                  return (
+                    <FadeSlideIn 
+                      key={service.id} 
+                      delay={index * 0.05}
+                      className="service-card-wrapper"
+                    >
+                      <div 
+                        ref={cardRef}
+                        className={`service-card card motion-lift ${isHovered ? 'hovered' : ''}`}
+                      >
+                        <div className="service-image">{service.image}</div>
+                        <h3>{service.name}</h3>
+                        <p className="service-description">{service.description}</p>
 
-                  <div className="service-details">
-                    <span className="badge badge-primary">{service.category}</span>
-                    <span className="price">${service.price}</span>
+                        <div className="service-details">
+                          <span className="badge badge-primary">{service.category}</span>
+                          <span className="price">${service.price}</span>
+                        </div>
+
+                        <div className="service-rating">
+                          <span className="stars">{'⭐'.repeat(Math.floor(service.rating))}</span>
+                          <span className="rating-value">{service.rating}</span>
+                          <span className="reviews-count">({service.reviews})</span>
+                        </div>
+
+                        <p className="service-detail-text">{service.details}</p>
+
+                        <button className="btn btn-primary" style={{ width: '100%', marginTop: '16px' }}>
+                          Book Now
+                        </button>
+                      </div>
+                    </FadeSlideIn>
+                  )
+                })
+              ) : (
+                <FadeSlideIn>
+                  <div className="no-results">
+                    <p>No services found matching your filters.</p>
                   </div>
-
-                  <div className="service-rating">
-                    <span className="stars">{'⭐'.repeat(Math.floor(service.rating))}</span>
-                    <span className="rating-value">{service.rating}</span>
-                    <span className="reviews-count">({service.reviews})</span>
-                  </div>
-
-                  <p className="service-detail-text">{service.details}</p>
-
-                  <button className="btn btn-primary" style={{ width: '100%', marginTop: '16px' }}>
-                    Book Now
-                  </button>
-                </div>
-              ))
-            ) : (
-              <div className="no-results">
-                <p>No services found matching your filters.</p>
-              </div>
-            )}
-          </div>
+                </FadeSlideIn>
+              )}
+            </div>
+          </StaggerContainer>
         </div>
       </div>
     </div>
