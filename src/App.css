@@ -1,9 +1,396 @@
+/* ==========================================================================
+   APP LAYOUT & GLOBAL WRAPPERS
+   Phase 1: Global Luxury Design Foundation
+   ========================================================================== */
+
+/* Main Application Wrapper */
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
 }
 
+/* Main Content Area */
 .main-content {
   flex: 1;
+  position: relative;
+  width: 100%;
+}
+
+/* ==========================================================================
+   BACKGROUND TREATMENTS
+   ========================================================================== */
+
+/* Luxury gradient background for hero sections */
+.bg-luxury-gradient {
+  position: relative;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #334155 100%);
+}
+
+/* Subtle gradient background for light sections */
+.bg-gradient-subtle {
+  position: relative;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+    var(--background-color);
+}
+
+/* Dark background with texture */
+.bg-dark-textured {
+  background: 
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>'),
+    linear-gradient(135deg, var(--color-dark-bg-primary), var(--color-dark-bg-secondary));
+  color: var(--text-inverse);
+}
+
+/* Animated gradient orb background */
+.bg-gradient-orbs {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-gradient-orbs::before,
+.bg-gradient-orbs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.1;
+  animation: float-orb 20s ease-in-out infinite;
+}
+
+.bg-gradient-orbs::before {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--color-primary-500), var(--color-purple-600));
+  top: -200px;
+  left: -200px;
+}
+
+.bg-gradient-orbs::after {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, var(--color-pink-500), var(--color-amber-500));
+  bottom: -175px;
+  right: -175px;
+  animation-delay: 10s;
+}
+
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(40px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+/* ==========================================================================
+   PAGE LAYOUT PATTERNS
+   ========================================================================== */
+
+/* Standard page wrapper with consistent padding */
+.page-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+/* Full-width section container */
+.section-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+/* Content max-width container with responsive padding */
+.content-container {
+  max-width: var(--container-lg);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .content-container {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* Narrow content container for reading experiences */
+.content-narrow {
+  max-width: var(--container-sm);
+}
+
+/* Wide content container for expansive layouts */
+.content-wide {
+  max-width: var(--container-xl);
+}
+
+/* ==========================================================================
+   SECTION SPACING UTILITIES
+   ========================================================================== */
+
+/* Vertical spacing presets for sections */
+.section-spacing-none {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.section-spacing-xs {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+.section-spacing-sm {
+  padding-top: var(--section-padding-sm);
+  padding-bottom: var(--section-padding-sm);
+}
+
+.section-spacing-md {
+  padding-top: var(--section-padding-md);
+  padding-bottom: var(--section-padding-md);
+}
+
+.section-spacing-lg {
+  padding-top: var(--section-padding-lg);
+  padding-bottom: var(--section-padding-lg);
+}
+
+.section-spacing-xl {
+  padding-top: var(--section-padding-xl);
+  padding-bottom: var(--section-padding-xl);
+}
+
+/* Top spacing only */
+.section-spacing-top-sm {
+  padding-top: var(--section-padding-sm);
+}
+
+.section-spacing-top-md {
+  padding-top: var(--section-padding-md);
+}
+
+.section-spacing-top-lg {
+  padding-top: var(--section-padding-lg);
+}
+
+/* Bottom spacing only */
+.section-spacing-bottom-sm {
+  padding-bottom: var(--section-padding-sm);
+}
+
+.section-spacing-bottom-md {
+  padding-bottom: var(--section-padding-md);
+}
+
+.section-spacing-bottom-lg {
+  padding-bottom: var(--section-padding-lg);
+}
+
+/* ==========================================================================
+   PADDING & MARGIN UTILITIES
+   ========================================================================== */
+
+/* Padding utilities */
+.p-0 { padding: var(--space-0); }
+.p-1 { padding: var(--space-1); }
+.p-2 { padding: var(--space-2); }
+.p-3 { padding: var(--space-3); }
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.p-8 { padding: var(--space-8); }
+.p-12 { padding: var(--space-12); }
+.p-16 { padding: var(--space-16); }
+
+/* Padding X (horizontal) */
+.px-0 { padding-left: var(--space-0); padding-right: var(--space-0); }
+.px-1 { padding-left: var(--space-1); padding-right: var(--space-1); }
+.px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
+.px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
+.px-4 { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-6 { padding-left: var(--space-6); padding-right: var(--space-6); }
+.px-8 { padding-left: var(--space-8); padding-right: var(--space-8); }
+
+/* Padding Y (vertical) */
+.py-0 { padding-top: var(--space-0); padding-bottom: var(--space-0); }
+.py-1 { padding-top: var(--space-1); padding-bottom: var(--space-1); }
+.py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.py-3 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+.py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+
+/* Margin utilities */
+.m-0 { margin: var(--space-0); }
+.m-1 { margin: var(--space-1); }
+.m-2 { margin: var(--space-2); }
+.m-3 { margin: var(--space-3); }
+.m-4 { margin: var(--space-4); }
+.m-6 { margin: var(--space-6); }
+.m-8 { margin: var(--space-8); }
+.m-auto { margin: auto; }
+
+/* Margin X (horizontal) */
+.mx-0 { margin-left: var(--space-0); margin-right: var(--space-0); }
+.mx-1 { margin-left: var(--space-1); margin-right: var(--space-1); }
+.mx-2 { margin-left: var(--space-2); margin-right: var(--space-2); }
+.mx-3 { margin-left: var(--space-3); margin-right: var(--space-3); }
+.mx-4 { margin-left: var(--space-4); margin-right: var(--space-4); }
+.mx-6 { margin-left: var(--space-6); margin-right: var(--space-6); }
+.mx-8 { margin-left: var(--space-8); margin-right: var(--space-8); }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Margin Y (vertical) */
+.my-0 { margin-top: var(--space-0); margin-bottom: var(--space-0); }
+.my-1 { margin-top: var(--space-1); margin-bottom: var(--space-1); }
+.my-2 { margin-top: var(--space-2); margin-bottom: var(--space-2); }
+.my-3 { margin-top: var(--space-3); margin-bottom: var(--space-3); }
+.my-4 { margin-top: var(--space-4); margin-bottom: var(--space-4); }
+.my-6 { margin-top: var(--space-6); margin-bottom: var(--space-6); }
+.my-8 { margin-top: var(--space-8); margin-bottom: var(--space-8); }
+.my-12 { margin-top: var(--space-12); margin-bottom: var(--space-12); }
+.my-16 { margin-top: var(--space-16); margin-bottom: var(--space-16); }
+
+/* Margin top */
+.mt-0 { margin-top: var(--space-0); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-6 { margin-top: var(--space-6); }
+.mt-8 { margin-top: var(--space-8); }
+.mt-12 { margin-top: var(--space-12); }
+.mt-16 { margin-top: var(--space-16); }
+
+/* Margin bottom */
+.mb-0 { margin-bottom: var(--space-0); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-8 { margin-bottom: var(--space-8); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mb-16 { margin-bottom: var(--space-16); }
+
+/* ==========================================================================
+   RESPONSIVE VISIBILITY
+   ========================================================================== */
+
+/* Hide on mobile */
+@media (max-width: 639px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+
+/* Hide on tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .hide-tablet {
+    display: none;
+  }
+}
+
+/* Hide on desktop */
+@media (min-width: 1024px) {
+  .hide-desktop {
+    display: none;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .show-mobile {
+    display: none;
+  }
+}
+
+/* Show only on tablet */
+.show-tablet {
+  display: none;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .show-tablet {
+    display: block;
+  }
+}
+
+/* Show only on desktop */
+.show-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .show-desktop {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   SCROLLBAR STYLING (Webkit browsers)
+   ========================================================================== */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: var(--radius-full);
+  border: 3px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-400);
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  .app {
+    background: white;
+  }
+  
+  .no-print,
+  .btn,
+  button {
+    display: none;
+  }
+  
+  .main-content {
+    padding: 0;
+  }
 }

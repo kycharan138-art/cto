@@ -1,4 +1,13 @@
-/* Respect reduced motion preferences */
+/* ==========================================================================
+   ANIMATION SYSTEM - MOTION LANGUAGE
+   Phase 1: Global Luxury Design Foundation
+   ========================================================================== */
+
+/* ==========================================================================
+   ACCESSIBILITY - REDUCED MOTION
+   Always respect user preferences for reduced motion
+   ========================================================================== */
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -10,7 +19,20 @@
   }
 }
 
-/* Fade Up Animation */
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+
+/* Entrance Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -22,17 +44,17 @@
   }
 }
 
-/* Fade In Animation */
-@keyframes fadeIn {
+@keyframes fadeDown {
   from {
     opacity: 0;
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Slide In Left Animation */
 @keyframes slideInLeft {
   from {
     opacity: 0;
@@ -44,7 +66,6 @@
   }
 }
 
-/* Slide In Right Animation */
 @keyframes slideInRight {
   from {
     opacity: 0;
@@ -56,7 +77,38 @@
   }
 }
 
-/* Subtle Float Animation */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Continuous Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 @keyframes subtleFloat {
   0%, 100% {
     transform: translateY(0px);
@@ -66,17 +118,17 @@
   }
 }
 
-/* Pulse Animation */
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
   50% {
-    opacity: 0.7;
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
-/* Spin Animation */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -86,7 +138,16 @@
   }
 }
 
-/* Shimmer Animation for Skeleton Loading */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Shimmer & Glow Effects */
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
@@ -96,57 +157,169 @@
   }
 }
 
-/* Animation Utility Classes */
-.fade-up {
-  animation: fadeUp 0.6s ease-out forwards;
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+  }
 }
 
+@keyframes shimmerText {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Gradient Animations */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradientRotate {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+/* ==========================================================================
+   ANIMATION UTILITY CLASSES
+   Usage: Apply these classes to elements for instant animations
+   ========================================================================== */
+
+/* Fade Animations */
 .fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeIn var(--duration-medium) var(--ease-luxury) forwards;
 }
 
+.fade-up {
+  animation: fadeUp var(--duration-medium) var(--ease-luxury) forwards;
+}
+
+.fade-down {
+  animation: fadeDown var(--duration-medium) var(--ease-luxury) forwards;
+}
+
+/* Slide Animations */
 .slide-in-left {
-  animation: slideInLeft 0.6s ease-out forwards;
+  animation: slideInLeft var(--duration-medium) var(--ease-luxury) forwards;
 }
 
 .slide-in-right {
-  animation: slideInRight 0.6s ease-out forwards;
+  animation: slideInRight var(--duration-medium) var(--ease-luxury) forwards;
+}
+
+/* Scale Animations */
+.scale-in {
+  animation: scaleIn var(--duration-normal) var(--ease-luxury) forwards;
+}
+
+.scale-up {
+  animation: scaleUp var(--duration-medium) var(--ease-luxury) forwards;
+}
+
+/* Continuous Animations */
+.float {
+  animation: float 3s var(--ease-smooth) infinite;
 }
 
 .subtle-float {
-  animation: subtleFloat 3s ease-in-out infinite;
+  animation: subtleFloat 3s var(--ease-smooth) infinite;
 }
 
 .pulse {
-  animation: pulse 2s ease-in-out infinite;
+  animation: pulse 2s var(--ease-luxury) infinite;
 }
 
-/* Delay utilities for staggered animations */
+.spin {
+  animation: spin var(--duration-slowest) var(--ease-linear) infinite;
+}
+
+.bounce {
+  animation: bounce 1s var(--ease-luxury) infinite;
+}
+
+/* ==========================================================================
+   ANIMATION DELAY UTILITIES
+   Usage: Chain with animation classes for staggered effects
+   ========================================================================== */
+
+.delay-50 {
+  animation-delay: var(--stagger-1);
+}
+
 .delay-100 {
-  animation-delay: 0.1s;
+  animation-delay: var(--stagger-2);
+}
+
+.delay-150 {
+  animation-delay: var(--stagger-3);
 }
 
 .delay-200 {
-  animation-delay: 0.2s;
+  animation-delay: var(--stagger-4);
+}
+
+.delay-250 {
+  animation-delay: var(--stagger-5);
 }
 
 .delay-300 {
-  animation-delay: 0.3s;
+  animation-delay: 300ms;
 }
 
 .delay-400 {
-  animation-delay: 0.4s;
+  animation-delay: 400ms;
 }
 
 .delay-500 {
-  animation-delay: 0.5s;
+  animation-delay: 500ms;
 }
 
-/* Reveal animations for Intersection Observer */
+.delay-600 {
+  animation-delay: 600ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+.delay-800 {
+  animation-delay: 800ms;
+}
+
+/* ==========================================================================
+   REVEAL ANIMATIONS (IntersectionObserver)
+   Usage: Apply reveal classes, add 'revealed' class via JavaScript
+   ========================================================================== */
+
+.reveal-fade-in {
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-luxury);
+}
+
+.reveal-fade-in.revealed {
+  opacity: 1;
+}
+
 .reveal-fade-up {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: 
+    opacity var(--duration-medium) var(--ease-luxury),
+    transform var(--duration-medium) var(--ease-luxury);
 }
 
 .reveal-fade-up.revealed {
@@ -154,10 +327,25 @@
   transform: translateY(0);
 }
 
+.reveal-fade-down {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: 
+    opacity var(--duration-medium) var(--ease-luxury),
+    transform var(--duration-medium) var(--ease-luxury);
+}
+
+.reveal-fade-down.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .reveal-slide-in-left {
   opacity: 0;
   transform: translateX(-50px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: 
+    opacity var(--duration-medium) var(--ease-luxury),
+    transform var(--duration-medium) var(--ease-luxury);
 }
 
 .reveal-slide-in-left.revealed {
@@ -168,7 +356,9 @@
 .reveal-slide-in-right {
   opacity: 0;
   transform: translateX(50px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition: 
+    opacity var(--duration-medium) var(--ease-luxury),
+    transform var(--duration-medium) var(--ease-luxury);
 }
 
 .reveal-slide-in-right.revealed {
@@ -176,31 +366,102 @@
   transform: translateX(0);
 }
 
-/* Hover animations */
+.reveal-scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: 
+    opacity var(--duration-normal) var(--ease-luxury),
+    transform var(--duration-normal) var(--ease-luxury);
+}
+
+.reveal-scale-in.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================================================
+   HOVER ANIMATIONS
+   Usage: Apply to interactive elements for hover effects
+   ========================================================================== */
+
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: 
+    transform var(--duration-normal) var(--ease-luxury),
+    box-shadow var(--duration-normal) var(--ease-luxury);
 }
 
 .hover-lift:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px);
+}
+
+.hover-lift-sm {
+  transition: 
+    transform var(--duration-fast) var(--ease-luxury),
+    box-shadow var(--duration-fast) var(--ease-luxury);
+}
+
+.hover-lift-sm:hover {
+  transform: translateY(-4px);
 }
 
 .hover-scale {
-  transition: transform 0.2s ease;
+  transition: transform var(--duration-normal) var(--ease-luxury);
 }
 
 .hover-scale:hover {
   transform: scale(1.05);
 }
 
-/* Shimmer border effect */
-.shimmer-border {
+.hover-scale-sm {
+  transition: transform var(--duration-fast) var(--ease-luxury);
+}
+
+.hover-scale-sm:hover {
+  transform: scale(1.02);
+}
+
+.hover-scale-lg {
+  transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.hover-scale-lg:hover {
+  transform: scale(1.1);
+}
+
+.hover-rotate {
+  transition: transform var(--duration-normal) var(--ease-luxury);
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+.hover-glow {
+  transition: box-shadow var(--duration-normal) var(--ease-luxury);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+}
+
+.hover-brightness {
+  transition: filter var(--duration-normal) var(--ease-luxury);
+}
+
+.hover-brightness:hover {
+  filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   SHIMMER & SHINE EFFECTS
+   ========================================================================== */
+
+.shimmer {
   position: relative;
   overflow: hidden;
 }
 
-.shimmer-border::before {
+.shimmer::before {
   content: '';
   position: absolute;
   top: 0;
@@ -210,100 +471,81 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(59, 130, 246, 0.3),
+    rgba(255, 255, 255, 0.3),
     transparent
   );
-  transition: left 0.5s ease;
+  transition: left var(--duration-slow) var(--ease-luxury);
 }
 
-.shimmer-border:hover::before {
+.shimmer:hover::before {
   left: 100%;
 }
 
-/* Hero-specific animations */
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes glow-pulse {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
-  }
-}
-
-@keyframes shimmer-text {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Button glow effect */
-.btn-glow {
+.shimmer-continuous {
   position: relative;
   overflow: hidden;
 }
 
-.btn-glow::after {
+.shimmer-continuous::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  animation: shimmer 2s var(--ease-linear) infinite;
 }
 
-.btn-glow:hover::after {
-  width: 300px;
-  height: 300px;
+/* Shimmer for skeleton loading */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-neutral-200);
 }
 
-/* Parallax effect for hero elements */
-.parallax-slow {
-  transition: transform 0.1s ease-out;
+.skeleton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  animation: shimmer 1.5s var(--ease-linear) infinite;
 }
 
-.parallax-medium {
-  transition: transform 0.05s ease-out;
-}
+/* ==========================================================================
+   HERO-SPECIFIC ANIMATIONS
+   Usage: For premium hero sections with sequential reveals
+   ========================================================================== */
 
-.parallax-fast {
-  transition: transform 0.02s ease-out;
-}
-
-/* Hero entrance animations */
 .hero-entrance-left {
   opacity: 0;
   transform: translateX(-50px);
-  animation: heroSlideInLeft 1s ease-out forwards;
+  animation: heroSlideInLeft var(--duration-slowest) var(--ease-luxury) forwards;
 }
 
 .hero-entrance-right {
   opacity: 0;
   transform: translateX(50px);
-  animation: heroSlideInRight 1s ease-out forwards;
+  animation: heroSlideInRight var(--duration-slowest) var(--ease-luxury) forwards;
 }
 
 .hero-entrance-up {
   opacity: 0;
   transform: translateY(30px);
-  animation: heroSlideInUp 1s ease-out forwards;
+  animation: heroSlideInUp var(--duration-slowest) var(--ease-luxury) forwards;
 }
 
 @keyframes heroSlideInLeft {
@@ -327,12 +569,209 @@
   }
 }
 
-/* Staggered entrance delays */
-.hero-delay-1 { animation-delay: 0.1s; }
-.hero-delay-2 { animation-delay: 0.2s; }
-.hero-delay-3 { animation-delay: 0.3s; }
-.hero-delay-4 { animation-delay: 0.4s; }
-.hero-delay-5 { animation-delay: 0.5s; }
-.hero-delay-6 { animation-delay: 0.6s; }
-.hero-delay-7 { animation-delay: 0.7s; }
-.hero-delay-8 { animation-delay: 0.8s; }
+/* Hero staggered delays */
+.hero-delay-1 { animation-delay: 100ms; }
+.hero-delay-2 { animation-delay: 200ms; }
+.hero-delay-3 { animation-delay: 300ms; }
+.hero-delay-4 { animation-delay: 400ms; }
+.hero-delay-5 { animation-delay: 500ms; }
+.hero-delay-6 { animation-delay: 600ms; }
+.hero-delay-7 { animation-delay: 700ms; }
+.hero-delay-8 { animation-delay: 800ms; }
+
+/* ==========================================================================
+   PARALLAX EFFECTS
+   Usage: Apply to elements inside scroll containers
+   ========================================================================== */
+
+.parallax-slow {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.parallax-medium {
+  transition: transform 50ms var(--ease-out);
+}
+
+.parallax-fast {
+  transition: transform 20ms var(--ease-out);
+}
+
+/* ==========================================================================
+   BUTTON-SPECIFIC ANIMATIONS
+   ========================================================================== */
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: 
+    width var(--duration-medium) var(--ease-luxury),
+    height var(--duration-medium) var(--ease-luxury);
+}
+
+.btn-glow:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left var(--duration-slow) var(--ease-luxury);
+}
+
+.btn-shimmer:hover::before {
+  left: 100%;
+}
+
+/* ==========================================================================
+   LOADING STATES & SPINNERS
+   ========================================================================== */
+
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin var(--duration-slower) var(--ease-linear) infinite;
+}
+
+.loading-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.loading-dots span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: loading-bounce 1.4s var(--ease-luxury) infinite;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loading-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   PAGE TRANSITIONS
+   ========================================================================== */
+
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 
+    opacity var(--duration-medium) var(--ease-luxury),
+    transform var(--duration-medium) var(--ease-luxury);
+}
+
+.page-exit {
+  opacity: 1;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-luxury);
+}
+
+/* ==========================================================================
+   UTILITY ANIMATION CONTROLS
+   ========================================================================== */
+
+/* Pause animation on hover */
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
+
+/* Animation iteration control */
+.animate-once {
+  animation-iteration-count: 1;
+}
+
+.animate-twice {
+  animation-iteration-count: 2;
+}
+
+.animate-infinite {
+  animation-iteration-count: infinite;
+}
+
+/* Animation direction control */
+.animate-reverse {
+  animation-direction: reverse;
+}
+
+.animate-alternate {
+  animation-direction: alternate;
+}
+
+/* ==========================================================================
+   PERFORMANCE OPTIMIZATIONS
+   Use transform and opacity for better performance
+   ========================================================================== */
+
+.will-animate {
+  will-change: transform, opacity;
+}
+
+.will-animate-transform {
+  will-change: transform;
+}
+
+.will-animate-opacity {
+  will-change: opacity;
+}
+
+/* Remove will-change after animation completes to save memory */
+.animated {
+  will-change: auto;
+}
