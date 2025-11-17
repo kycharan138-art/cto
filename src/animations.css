@@ -336,3 +336,284 @@
 .hero-delay-6 { animation-delay: 0.6s; }
 .hero-delay-7 { animation-delay: 0.7s; }
 .hero-delay-8 { animation-delay: 0.8s; }
+
+/* Enhanced reveal animations with CSS variables */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out), 
+              transform var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out);
+}
+
+.reveal-fade-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-fade-down {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out), 
+              transform var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out);
+}
+
+.reveal-fade-down.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out), 
+              transform var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out);
+}
+
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reveal-rotate {
+  opacity: 0;
+  transform: rotate(-15deg) scale(0.9);
+  transition: opacity var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out), 
+              transform var(--reveal-duration, 0.6s) var(--reveal-easing, ease-out);
+}
+
+.reveal-rotate.revealed {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Luxury transition system */
+.transition-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.transition-forward-out {
+  animation: transitionForwardOut 0.3s ease-out forwards;
+}
+
+.transition-forward-in {
+  animation: transitionForwardIn 0.3s ease-out forwards;
+}
+
+.transition-backward-out {
+  animation: transitionBackwardOut 0.3s ease-out forwards;
+}
+
+.transition-backward-in {
+  animation: transitionBackwardIn 0.3s ease-out forwards;
+}
+
+@keyframes transitionForwardOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes transitionForwardIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes transitionBackwardOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes transitionBackwardIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Luxury transition overlay */
+.luxury-transition {
+  position: relative;
+  min-height: 100vh;
+}
+
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  animation: transitionFadeIn 0.3s ease-out forwards;
+}
+
+.transition-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes transitionFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes transitionFadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+.transition-content {
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.transition-content:not(.mounted) {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Page transitions */
+.page-transition {
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.page-transition.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger container styles */
+.stagger-container > * {
+  transition-delay: calc(var(--stagger-delay, 0.1s) * var(--stagger-index, 0));
+}
+
+/* Motion utilities enhanced */
+.motion-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motion-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.motion-scale {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.motion-scale:hover {
+  transform: scale(1.05);
+}
+
+.motion-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Floating animation with customizable parameters */
+@keyframes floating-custom {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(var(--float-amplitude, -10px)); 
+  }
+}
+
+.floating-custom {
+  animation: floating-custom var(--float-duration, 3s) ease-in-out infinite;
+}
+
+/* Magnetic effect styles */
+.magnetic-element {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Parallax effect styles */
+.parallax-element {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Group reveal styles */
+[data-reveal-group] {
+  transition-delay: 0s;
+}
+
+/* Reduced motion fallbacks */
+@media (prefers-reduced-motion: reduce) {
+  .transition-container,
+  .luxury-transition,
+  .page-transition {
+    transition: none;
+    animation: none;
+  }
+  
+  .transition-overlay {
+    display: none;
+  }
+  
+  .motion-lift,
+  .motion-scale,
+  .motion-glow,
+  .floating-custom,
+  .magnetic-element,
+  .parallax-element {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Performance optimizations */
+.fade-slide-in,
+.scale-in,
+.rotate-in {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.fade-slide-in.revealed,
+.scale-in.revealed,
+.rotate-in.revealed {
+  will-change: auto;
+}
