@@ -1,17 +1,13 @@
 import { useState } from 'react'
-import { Search, Filter } from 'lucide-react'
-import { FadeSlideIn, StaggerContainer } from '../components/Motion'
-import { useLuxuryHover, useFloatingCard } from '../hooks/useMotion'
+import { Search, Filter, Crown, CheckCircle, Star, Clock, Shield, X } from 'lucide-react'
+import { useReveal } from '../hooks/useReveal'
 import './Services.css'
 
 export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedPriceRange, setSelectedPriceRange] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
-  
-  // Motion hooks for service cards
-  const serviceCardRefs = {}
-  const hoveredCards = {}
+  const [headerRef, headerInView] = useReveal({ threshold: 0.1 })
 
   const categories = ['all', 'Cleaning', 'Plumbing', 'Electrical', 'Landscaping', 'Handyman', 'HVAC']
 
@@ -26,7 +22,9 @@ export default function Services() {
       rating: 4.8,
       reviews: 256,
       image: '🧹',
-      details: 'Deep cleaning service with eco-friendly products'
+      details: 'Deep cleaning service with eco-friendly products',
+      tier: 'premium',
+      benefits: ['Eco-friendly products', 'Detailed deep clean', 'Kitchen & bathrooms', 'Satisfaction guaranteed']
     },
     {
       id: 2,
@@ -38,7 +36,9 @@ export default function Services() {
       rating: 4.7,
       reviews: 143,
       image: '🪟',
-      details: 'Interior and exterior window cleaning'
+      details: 'Interior and exterior window cleaning',
+      tier: 'standard',
+      benefits: ['Interior & exterior', 'Streak-free finish', 'All window types', 'Quick service']
     },
     {
       id: 3,
@@ -50,7 +50,9 @@ export default function Services() {
       rating: 4.9,
       reviews: 198,
       image: '🟫',
-      details: 'Deep carpet cleaning and stain treatment'
+      details: 'Deep carpet cleaning and stain treatment',
+      tier: 'premium',
+      benefits: ['Deep steam cleaning', 'Stain removal', 'Pet odor treatment', 'Fast drying']
     },
     {
       id: 4,
@@ -62,7 +64,9 @@ export default function Services() {
       rating: 4.9,
       reviews: 189,
       image: '🔧',
-      details: 'Quick response for all plumbing emergencies'
+      details: 'Quick response for all plumbing emergencies',
+      tier: 'premium',
+      benefits: ['24/7 emergency', 'Licensed plumbers', 'Leak detection', 'Quality parts']
     },
     {
       id: 5,
@@ -74,7 +78,9 @@ export default function Services() {
       rating: 4.6,
       reviews: 76,
       image: '🚽',
-      details: 'Professional installation by licensed plumbers'
+      details: 'Professional installation by licensed plumbers',
+      tier: 'standard',
+      benefits: ['Expert installation', 'Disposal included', 'Water efficiency', 'Warranty coverage']
     },
     {
       id: 6,
@@ -86,7 +92,9 @@ export default function Services() {
       rating: 4.7,
       reviews: 104,
       image: '🔥',
-      details: 'Professional water heater services'
+      details: 'Professional water heater services',
+      tier: 'premium',
+      benefits: ['Installation & repair', 'Energy efficient', 'Safety inspection', 'Extended warranty']
     },
     {
       id: 7,
@@ -98,7 +106,9 @@ export default function Services() {
       rating: 4.7,
       reviews: 142,
       image: '⚡',
-      details: 'Licensed electrician with 10+ years experience'
+      details: 'Licensed electrician with 10+ years experience',
+      tier: 'premium',
+      benefits: ['Licensed & insured', 'Code compliant', 'Safety certified', '10+ years experience']
     },
     {
       id: 8,
@@ -110,7 +120,9 @@ export default function Services() {
       rating: 4.8,
       reviews: 167,
       image: '💡',
-      details: 'Quick installation of all types of light fixtures'
+      details: 'Quick installation of all types of light fixtures',
+      tier: 'standard',
+      benefits: ['All fixture types', 'Same-day service', 'LED options', 'Cleanup included']
     },
     {
       id: 9,
@@ -122,7 +134,9 @@ export default function Services() {
       rating: 4.6,
       reviews: 89,
       image: '🔌',
-      details: 'Professional electrical panel services'
+      details: 'Professional electrical panel services',
+      tier: 'premium',
+      benefits: ['Panel upgrades', 'Safety inspection', 'Code updates', 'Emergency service']
     },
     {
       id: 10,
@@ -134,7 +148,9 @@ export default function Services() {
       rating: 4.6,
       reviews: 203,
       image: '🌱',
-      details: 'Weekly or bi-weekly lawn maintenance'
+      details: 'Weekly or bi-weekly lawn maintenance',
+      tier: 'standard',
+      benefits: ['Weekly maintenance', 'Edge trimming', 'Debris removal', 'Flexible scheduling']
     },
     {
       id: 11,
@@ -146,7 +162,9 @@ export default function Services() {
       rating: 4.9,
       reviews: 87,
       image: '🌻',
-      details: 'Custom garden design with professional installation'
+      details: 'Custom garden design with professional installation',
+      tier: 'premium',
+      benefits: ['Custom design', 'Plant selection', 'Full installation', '90-day guarantee']
     },
     {
       id: 12,
@@ -158,7 +176,9 @@ export default function Services() {
       rating: 4.7,
       reviews: 115,
       image: '🌳',
-      details: 'Professional tree care and removal'
+      details: 'Professional tree care and removal',
+      tier: 'premium',
+      benefits: ['Certified arborist', 'Safe removal', 'Stump grinding', 'Full cleanup']
     },
     {
       id: 13,
@@ -170,7 +190,9 @@ export default function Services() {
       rating: 4.8,
       reviews: 276,
       image: '🔨',
-      details: 'Professional handyman for all your small repairs'
+      details: 'Professional handyman for all your small repairs',
+      tier: 'standard',
+      benefits: ['Multi-skilled', 'Small repairs', 'Quick response', 'Fair pricing']
     },
     {
       id: 14,
@@ -182,7 +204,9 @@ export default function Services() {
       rating: 4.7,
       reviews: 134,
       image: '🧱',
-      details: 'Expert drywall finishing and repairs'
+      details: 'Expert drywall finishing and repairs',
+      tier: 'standard',
+      benefits: ['Patch & repair', 'Texture matching', 'Paint-ready finish', 'Clean work area']
     },
     {
       id: 15,
@@ -194,7 +218,9 @@ export default function Services() {
       rating: 4.9,
       reviews: 198,
       image: '📦',
-      details: 'Fast and efficient assembly services'
+      details: 'Fast and efficient assembly services',
+      tier: 'standard',
+      benefits: ['All brands', 'Tool provided', 'Fast service', 'Packaging removal']
     },
     {
       id: 16,
@@ -206,7 +232,9 @@ export default function Services() {
       rating: 4.8,
       reviews: 167,
       image: '❄️',
-      details: 'Professional AC repair and maintenance'
+      details: 'Professional AC repair and maintenance',
+      tier: 'premium',
+      benefits: ['Full inspection', 'Filter replacement', 'Efficiency check', 'Seasonal tune-up']
     }
   ]
 
@@ -225,23 +253,35 @@ export default function Services() {
 
   const priceRanges = ['all', '25-75', '50-100', '100-200', '150-250', '200-500']
 
+  const hasActiveFilters = selectedCategory !== 'all' || selectedPriceRange !== 'all' || searchTerm !== ''
+
   return (
     <div className="services-page">
-      <section className="services-header">
-        <div className="container">
-          <FadeSlideIn direction="down">
-            <h1>Our Services</h1>
-          </FadeSlideIn>
-          <FadeSlideIn direction="up" delay={0.2}>
-            <p>Browse and filter our comprehensive list of professional home services</p>
-          </FadeSlideIn>
+      <section 
+        ref={headerRef}
+        className={`services-header ${headerInView ? 'revealed' : ''}`}
+        role="banner"
+      >
+        <div className="services-header-background">
+          <div className="services-gradient-overlay"></div>
+          <div className="services-grid-pattern"></div>
+        </div>
+        <div className="container services-header-content">
+          <div className="services-badge">
+            <Crown size={16} aria-hidden="true" />
+            <span>Premium Home Services</span>
+          </div>
+          <h1>Our Services</h1>
+          <p>Discover our comprehensive collection of professional home services, expertly crafted to transform your living space.</p>
         </div>
       </section>
 
       <div className="container services-container">
-        <aside className="filters-sidebar">
+        <aside className="filters-sidebar lux-card">
           <div className="filters-header">
-            <Filter size={20} />
+            <div className="filter-icon-wrapper">
+              <Filter size={20} aria-hidden="true" />
+            </div>
             <h3>Filters</h3>
           </div>
 
@@ -253,8 +293,12 @@ export default function Services() {
                   key={cat}
                   className={`category-btn ${selectedCategory === cat ? 'active' : ''}`}
                   onClick={() => setSelectedCategory(cat)}
+                  aria-pressed={selectedCategory === cat}
                 >
-                  {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                  <span>{cat.charAt(0).toUpperCase() + cat.slice(1)}</span>
+                  {selectedCategory === cat && (
+                    <CheckCircle size={16} aria-hidden="true" />
+                  )}
                 </button>
               ))}
             </div>
@@ -271,6 +315,7 @@ export default function Services() {
                     value={range}
                     checked={selectedPriceRange === range}
                     onChange={(e) => setSelectedPriceRange(e.target.value)}
+                    aria-label={range === 'all' ? 'All Prices' : `Price range $${range}`}
                   />
                   <span>{range === 'all' ? 'All Prices' : `$${range}`}</span>
                 </label>
@@ -278,90 +323,135 @@ export default function Services() {
             </div>
           </div>
 
-          <button
-            className="btn btn-outline"
-            onClick={() => {
-              setSelectedCategory('all')
-              setSelectedPriceRange('all')
-              setSearchTerm('')
-            }}
-            style={{ width: '100%' }}
-          >
-            Reset Filters
-          </button>
+          {hasActiveFilters && (
+            <button
+              className="btn btn-reset"
+              onClick={() => {
+                setSelectedCategory('all')
+                setSelectedPriceRange('all')
+                setSearchTerm('')
+              }}
+              aria-label="Reset all filters"
+            >
+              <X size={16} aria-hidden="true" />
+              <span>Reset Filters</span>
+            </button>
+          )}
         </aside>
 
         <div className="services-main">
-          <div className="search-box">
-            <Search size={20} />
+          <div className="search-box lux-card">
+            <Search size={20} aria-hidden="true" />
             <input
               type="text"
               placeholder="Search services..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              aria-label="Search services"
             />
           </div>
 
           <div className="services-count">
-            Showing {filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''}
+            <span className="count-badge">
+              {filteredServices.length} service{filteredServices.length !== 1 ? 's' : ''}
+            </span>
+            {hasActiveFilters && (
+              <span className="filter-active-indicator">
+                <Filter size={14} aria-hidden="true" />
+                Filters active
+              </span>
+            )}
           </div>
 
-          <StaggerContainer staggerDelay={0.1}>
-            <div className="services-list grid-3">
-              {filteredServices.length > 0 ? (
-                filteredServices.map((service, index) => {
-                  // Create motion hooks for each card
-                  const [cardRef, isHovered] = useLuxuryHover({ 
-                    scale: 1.03, 
-                    lift: 6,
-                    glowColor: 'rgba(59, 130, 246, 0.2)'
-                  })
-                  
-                  return (
-                    <FadeSlideIn 
-                      key={service.id} 
-                      delay={index * 0.05}
-                      className="service-card-wrapper"
-                    >
-                      <div 
-                        ref={cardRef}
-                        className={`service-card card motion-lift ${isHovered ? 'hovered' : ''}`}
-                      >
-                        <div className="service-image">{service.image}</div>
-                        <h3>{service.name}</h3>
-                        <p className="service-description">{service.description}</p>
-
-                        <div className="service-details">
-                          <span className="badge badge-primary">{service.category}</span>
-                          <span className="price">${service.price}</span>
-                        </div>
-
-                        <div className="service-rating">
-                          <span className="stars">{'⭐'.repeat(Math.floor(service.rating))}</span>
-                          <span className="rating-value">{service.rating}</span>
-                          <span className="reviews-count">({service.reviews})</span>
-                        </div>
-
-                        <p className="service-detail-text">{service.details}</p>
-
-                        <button className="btn btn-primary" style={{ width: '100%', marginTop: '16px' }}>
-                          Book Now
-                        </button>
-                      </div>
-                    </FadeSlideIn>
-                  )
-                })
-              ) : (
-                <FadeSlideIn>
-                  <div className="no-results">
-                    <p>No services found matching your filters.</p>
-                  </div>
-                </FadeSlideIn>
-              )}
-            </div>
-          </StaggerContainer>
+          <div className="services-list" role="list">
+            {filteredServices.length > 0 ? (
+              filteredServices.map((service, index) => (
+                <ServiceCard key={service.id} service={service} index={index} />
+              ))
+            ) : (
+              <div className="no-results lux-card">
+                <div className="no-results-icon">🔍</div>
+                <h3>No services found</h3>
+                <p>Try adjusting your filters or search terms to find what you're looking for.</p>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    setSelectedCategory('all')
+                    setSelectedPriceRange('all')
+                    setSearchTerm('')
+                  }}
+                >
+                  Clear All Filters
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
+  )
+}
+
+function ServiceCard({ service, index }) {
+  const [cardRef, cardInView] = useReveal({ threshold: 0.1 })
+  const delay = (index % 6) * 100
+
+  return (
+    <article
+      ref={cardRef}
+      className={`service-card lux-card ${cardInView ? 'revealed' : ''}`}
+      style={{ animationDelay: `${delay}ms` }}
+      role="listitem"
+    >
+      {service.tier === 'premium' && (
+        <div className="service-tier-badge" aria-label="Premium service">
+          <Crown size={14} aria-hidden="true" />
+          <span>Premium</span>
+        </div>
+      )}
+      
+      <div className="service-icon-wrapper">
+        <div className="service-image">{service.image}</div>
+      </div>
+      
+      <div className="service-content">
+        <h3>{service.name}</h3>
+        <p className="service-description">{service.description}</p>
+
+        <div className="service-benefits">
+          <h4>What's included:</h4>
+          <ul>
+            {service.benefits.map((benefit, idx) => (
+              <li key={idx}>
+                <CheckCircle size={14} aria-hidden="true" />
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="service-meta">
+          <div className="service-rating">
+            <Star size={16} className="star-icon" aria-hidden="true" />
+            <span className="rating-value">{service.rating}</span>
+            <span className="reviews-count" aria-label={`${service.reviews} reviews`}>
+              ({service.reviews})
+            </span>
+          </div>
+          <span className="badge badge-category">{service.category}</span>
+        </div>
+
+        <div className="service-footer">
+          <div className="service-price">
+            <span className="price-label">Starting at</span>
+            <span className="price-value">${service.price}</span>
+          </div>
+          <button className="btn btn-primary btn-book" aria-label={`Book ${service.name}`}>
+            <Clock size={16} aria-hidden="true" />
+            <span>Book Now</span>
+          </button>
+        </div>
+      </div>
+    </article>
   )
 }
