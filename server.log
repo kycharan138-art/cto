@@ -1,0 +1,13 @@
+
+> home-service-website@1.0.0 dev
+> vite
+
+
+  [32m[1mVITE[22m v7.2.2[39m  [2mready in [0m[1m218[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m3000[22m/[39m
+[2m  [32m➜[39m  [1mNetwork[22m[2m: use [22m[1m--host[22m[2m to expose[22m
+Error: spawn xdg-open ENOENT
+    at ChildProcess._handle.onexit (node:internal/child_process:285:19)
+    at onErrorNT (node:internal/child_process:483:16)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
